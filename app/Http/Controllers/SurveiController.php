@@ -44,7 +44,13 @@ class SurveiController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $sum = 0;
+
+        foreach ($request->answer as $jaw){
+            $sum += $jaw;
+        }
+        dd($sum);
+
         survei::create([
             'sekolah' => $request->sekolah,
             'by' => $request->by,

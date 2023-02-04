@@ -33,7 +33,29 @@
     @enderror
 </div>
 @php
-    $options = ['yes', 'no'];
+    // $options = ['yes', 'no'];
+    $options = [
+    (object)
+        [
+            'value' => 4,
+            'name'  => 'Sering'
+        ],
+    (object)
+        [
+            'value' => 3,
+            'name'  => 'Pernah'
+        ],
+    (object)
+        [
+            'value' => 2,
+            'name'  => 'Jarang'
+        ],
+    (object)
+        [
+            'value' => 1,
+            'name'  => 'Tidak Pernah'
+        ]
+    ];
     $temp_key = [];
 @endphp
 {{-- @foreach ($pertanyaan as $key => $p)
@@ -56,7 +78,7 @@
 @endphp --}}
 
 @foreach ($kategoris as $key_kat => $kategori)
-    <div class="section" id="section-{{$loop->iteration}}" style="display: none">
+    <div class="section" id="section-{{$loop->iteration}}">
         @php
             $key_kat += 1;
         @endphp
@@ -65,8 +87,8 @@
                 <label class="form-control-label soal-{{$key_kat}}">{{ $p->nama }}</label>
                 @foreach ($options as $option)
                     <div class="custom-control custom-radio mb-3">
-                        <input name="answer[{{$p->id}}]" class="custom-control-input" id="{{$option}}-{{$p->id}}" type="radio" value="{{ $option }}">
-                        <label class="custom-control-label" for="{{$option}}-{{$p->id}}">{{ $option }}</label>
+                        <input name="answer[{{$p->id}}]" class="custom-control-input" id="{{$option->value}}-{{$p->id}}" type="radio" value="{{$option->value}}">
+                        <label class="custom-control-label" for="{{$option->value}}-{{$p->id}}">{{ $option->name }}</label>
                     </div>
                 @endforeach
             </div>
